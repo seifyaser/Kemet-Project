@@ -15,25 +15,25 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
 
   final List<Map<String, String>> onboardingData = [
     {
-      'image': 'assets/slide1.png',
+      'image': 'assets/slide1.svg',
       'title': 'AI That Helps You More',
       'subtitle':
           'Stay one step ahead — our AI suggests the best places based on your interests.'
     },
     {
-      'image': 'assets/slide2.png',
+      'image': 'assets/slide2.svg',
       'title': 'Book in Seconds',
       'subtitle':
           'Easily book your tickets online through the app, no waiting or hassle.'
     },
     {
-      'image': 'assets/slide3.png',
+      'image': 'assets/slide3.svg',
       'title': 'Explore with Smart Maps',
       'subtitle':
           'Let the map guide you! Find nearby attractions and plan your route easily.'
     },
     {
-      'image': 'assets/slide4.png',
+      'image': 'assets/slide4.svg',
       'title': 'Your journey starts with respect',
       'subtitle': 'Follow the guidelines and make every visit better.'
     },

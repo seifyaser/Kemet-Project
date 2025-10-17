@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class OnboardingPageView extends StatelessWidget {
@@ -24,14 +25,14 @@ class OnboardingPageView extends StatelessWidget {
         return Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Image.asset(
+            SvgPicture.asset(
               page['image']!,
               height: MediaQuery.of(context).size.height * 0.3,
               fit: BoxFit.contain,
             ),
             const SizedBox(height: 40),
 
-            /// المؤشر أسفل الصورة
+
             SmoothPageIndicator(
               controller: controller,
               count: data.length,

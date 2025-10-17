@@ -14,10 +14,10 @@ class OnboardingNextButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(bottom: 40),
+      padding: const EdgeInsets.only(bottom: 60),
       child: ElevatedButton(
         style: ElevatedButton.styleFrom(
-          backgroundColor: const Color(0xffB58D1B),
+          backgroundColor: const Color(0xff7D6305),
           shape: const CircleBorder(),
           padding: const EdgeInsets.all(16),
         ),
@@ -32,9 +32,9 @@ class OnboardingNextButton extends StatelessWidget {
           }
         },
         child: const Icon(
-          Icons.arrow_forward_ios,
+          Icons.arrow_forward,
           color: Colors.white,
-          size: 20,
+          size: 25,
         ),
       ),
     );
