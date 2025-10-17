@@ -41,55 +41,63 @@ class _OnboardingScreenState extends State<OnboardingScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final screenHeight = MediaQuery.of(context).size.height;
+    final screenWidth = MediaQuery.of(context).size.width;
+
     return Scaffold(
       backgroundColor: const Color(0xffF7F6F2),
       body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 24.0),
-          child: Column(
-            children: [
-          
-              Align(
-                alignment: const Alignment(1.1, -0.9),
-                child: Visibility(
-                  visible: !isLastPage,
-                  child: Padding(
-                    padding: const EdgeInsets.only(top: 10, right: 10),
+        child: LayoutBuilder(
+          builder: (context, constraints) {
+            return Stack(
+              children: [
+                // PageView
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 24.0),
+                  child: Column(
+                    children: [
+                      
+                      Expanded(
+                        child: OnboardingPageView(
+                          controller: _controller,
+                          data: onboardingData,
+                          onPageChanged: (index) {
+                            setState(() =>
+                                isLastPage = index == onboardingData.length - 1);
+                          },
+                        ),
+                      ),
+                      OnboardingNextButton(
+                        isLastPage: isLastPage,
+                        controller: _controller,
+                      ),
+                      SizedBox(height: screenHeight * 0.04),
+                    ],
+                  ),
+                ),
+
+                // Skip Button (Dynamic position)
+                if (!isLastPage)
+                  Positioned(
+                    top: screenHeight * 0.012,
+                    right: screenWidth * 0.03,
                     child: TextButton(
                       onPressed: () =>
                           _controller.jumpToPage(onboardingData.length - 1),
                       child: const Text(
                         'Skip',
-                        style: TextStyle(color: Colors.black54, fontSize: 16),
+                        style: TextStyle(
+                          color: Colors.black54,
+                          fontSize: 16,
+                        ),
                       ),
                     ),
                   ),
-                ),
-              ),
-
-            
-              Expanded(
-                child: OnboardingPageView(
-                  controller: _controller,
-                  data: onboardingData,
-                  onPageChanged: (index) {
-                    setState(() =>
-                        isLastPage = index == onboardingData.length - 1);
-                  },
-                ),
-              ),
-
-              
-              OnboardingNextButton(
-                isLastPage: isLastPage,
-                controller: _controller,
-              ),
-            ],
-          ),
+              ],
+            );
+          },
         ),
       ),
     );
   }
 }
-
-

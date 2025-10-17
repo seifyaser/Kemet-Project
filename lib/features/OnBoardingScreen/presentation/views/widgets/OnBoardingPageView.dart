@@ -18,7 +18,7 @@ class OnboardingPageView extends StatelessWidget {
   Widget build(BuildContext context) {
     return LayoutBuilder(
       builder: (context, constraints) {
-        final imageHeight = constraints.maxHeight * 0.3; 
+        final imageHeight = constraints.maxHeight * 0.35; 
         return PageView.builder(
           controller: controller,
           itemCount: data.length,
@@ -48,7 +48,7 @@ class OnboardingPageView extends StatelessWidget {
                     spacing: 6,
                   ),
                 ),
-                const SizedBox(height: 40),
+                const SizedBox(height: 60),
 
                 
                 Text(
@@ -68,6 +68,7 @@ class OnboardingPageView extends StatelessWidget {
                   textAlign: TextAlign.center,
                   style: const TextStyle(
                     fontSize: 16,
+                    fontWeight: FontWeight.w400,
                     color: Color(0xff0F0C01),
                     height: 1.4,
                   ),
