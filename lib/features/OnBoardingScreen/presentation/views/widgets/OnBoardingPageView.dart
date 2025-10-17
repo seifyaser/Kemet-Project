@@ -16,56 +16,65 @@ class OnboardingPageView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return PageView.builder(
-      controller: controller,
-      itemCount: data.length,
-      onPageChanged: onPageChanged,
-      itemBuilder: (context, index) {
-        final page = data[index];
-        return Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            SvgPicture.asset(
-              page['image']!,
-              height: MediaQuery.of(context).size.height * 0.3,
-              fit: BoxFit.contain,
-            ),
-            const SizedBox(height: 40),
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        final imageHeight = constraints.maxHeight * 0.3; 
+        return PageView.builder(
+          controller: controller,
+          itemCount: data.length,
+          onPageChanged: onPageChanged,
+          itemBuilder: (context, index) {
+            final page = data[index];
+            return Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+            
+                SvgPicture.asset(
+                  page['image']!,
+                  height: imageHeight,
+                  fit: BoxFit.contain,
+                ),
+                const SizedBox(height: 40),
 
+             
+                SmoothPageIndicator(
+                  controller: controller,
+                  count: data.length,
+                  effect: const SlideEffect(
+                    activeDotColor: Color(0xffBB9408),
+                    dotColor: Color(0xffE0DED7),
+                    dotHeight: 15,
+                    dotWidth: 15,
+                    spacing: 6,
+                  ),
+                ),
+                const SizedBox(height: 40),
 
-            SmoothPageIndicator(
-              controller: controller,
-              count: data.length,
-              effect: const SlideEffect(
-                activeDotColor: Color(0xffBB9408),
-                dotColor: Color(0xffE0DED7),
-                dotHeight: 15,
-                dotWidth: 15,
-                spacing: 6,
-              ),
-            ),
-            const SizedBox(height: 40),
+                
+                Text(
+                  page['title']!,
+                  textAlign: TextAlign.center,
+                  style: const TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.w500,
+                    color: Colors.black87,
+                  ),
+                ),
+                const SizedBox(height: 10),
 
-            Text(
-              page['title']!,
-              textAlign: TextAlign.center,
-              style: const TextStyle(
-                fontSize: 20,
-                fontWeight: FontWeight.w500,
-                color: Colors.black87,
-              ),
-            ),
-            const SizedBox(height: 10),
-            Text(
-              page['subtitle']!,
-              textAlign: TextAlign.center,
-              style: const TextStyle(
-                fontSize: 16,
-                color: Color(0xff0F0C01),
-                height: 1.4,
-              ),
-            ),
-          ],
+               
+                Text(
+                  page['subtitle']!,
+                  textAlign: TextAlign.center,
+                  style: const TextStyle(
+                    fontSize: 16,
+                    color: Color(0xff0F0C01),
+                    height: 1.4,
+                  ),
+                ),
+              ],
+            );
+          },
         );
       },
     );
